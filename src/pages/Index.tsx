@@ -48,35 +48,22 @@ const Index = () => {
         <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         
+        {/* Infinity Water Image - Background behind text */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 0.4, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
+          <img 
+            src={infinityWater} 
+            alt="Infinity Symbol" 
+            className="w-[500px] md:w-[700px] lg:w-[900px] h-auto"
+          />
+        </motion.div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Company Logo - Larger and more visible */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="mb-6"
-            >
-              <img 
-                src={logo} 
-                alt="Continu8 Logo" 
-                className="h-24 md:h-32 lg:h-40 w-auto mx-auto drop-shadow-[0_0_20px_hsl(185,100%,50%,0.5)]"
-              />
-            </motion.div>
-
-            {/* Infinity Water Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="mb-8"
-            >
-              <img 
-                src={infinityWater} 
-                alt="Infinity Symbol" 
-                className="w-64 md:w-80 lg:w-96 h-auto mx-auto"
-              />
-            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
