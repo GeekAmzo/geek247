@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { ServiceCard } from '@/components/ServiceCard';
 import { SectionTitle } from '@/components/SectionTitle';
 import logo from '@/assets/logo.png';
+import infinityWater from '@/assets/infinity-water.png';
 
 const services = [
   {
@@ -39,9 +40,9 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-circuit-pattern opacity-30" />
-        <div className="absolute inset-0 bg-radial-glow" />
+        {/* Background effects - 25% opacity */}
+        <div className="absolute inset-0 bg-circuit-pattern opacity-[0.25]" />
+        <div className="absolute inset-0 bg-radial-glow opacity-[0.25]" />
         
         {/* Animated lines */}
         <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
@@ -49,76 +50,32 @@ const Index = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Infinity Logo */}
+            {/* Company Logo - Larger and more visible */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-6"
+            >
+              <img 
+                src={logo} 
+                alt="Continu8 Logo" 
+                className="h-24 md:h-32 lg:h-40 w-auto mx-auto drop-shadow-[0_0_20px_hsl(185,100%,50%,0.5)]"
+              />
+            </motion.div>
+
+            {/* Infinity Water Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
               className="mb-8"
             >
-              <svg
-                viewBox="0 0 200 80"
-                className="w-48 h-24 mx-auto"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <filter id="heroGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                    <feMerge>
-                      <feMergeNode in="coloredBlur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(185, 100%, 50%)" />
-                    <stop offset="50%" stopColor="hsl(200, 100%, 55%)" />
-                    <stop offset="100%" stopColor="hsl(185, 100%, 50%)" />
-                  </linearGradient>
-                </defs>
-                <motion.path
-                  d="M60 40 C60 15, 25 15, 25 40 C25 65, 60 65, 60 40 C60 15, 95 15, 95 40 C95 65, 60 65, 60 40
-                     M140 40 C140 15, 175 15, 175 40 C175 65, 140 65, 140 40 C140 15, 105 15, 105 40 C105 65, 140 65, 140 40"
-                  stroke="url(#heroGradient)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  filter="url(#heroGlow)"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 2.5, ease: "easeInOut" }}
-                />
-                {/* Small glowing dots */}
-                <motion.circle
-                  cx="25"
-                  cy="40"
-                  r="3"
-                  fill="hsl(185, 100%, 70%)"
-                  filter="url(#heroGlow)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                />
-                <motion.circle
-                  cx="100"
-                  cy="40"
-                  r="3"
-                  fill="hsl(185, 100%, 70%)"
-                  filter="url(#heroGlow)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
-                />
-                <motion.circle
-                  cx="175"
-                  cy="40"
-                  r="3"
-                  fill="hsl(185, 100%, 70%)"
-                  filter="url(#heroGlow)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 2 }}
-                />
-              </svg>
+              <img 
+                src={infinityWater} 
+                alt="Infinity Symbol" 
+                className="w-64 md:w-80 lg:w-96 h-auto mx-auto"
+              />
             </motion.div>
 
             <motion.h1
