@@ -64,7 +64,7 @@ export const Footer = () => {
 
         <div className="border-t border-primary/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Geek247. All rights reserved.
+            © {new Date().getFullYear()} Geek247 - H44S (Pty) Ltd. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Helping businesses achieve greater efficiency through technology
