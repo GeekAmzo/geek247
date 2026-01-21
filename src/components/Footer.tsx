@@ -67,7 +67,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} Geek247. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
-            Trusted by businesses doing R10m-R200m in annual revenue
+            Helping businesses achieve greater efficiency through technology
           </p>
         </div>
       </div>
