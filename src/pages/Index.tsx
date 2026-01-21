@@ -5,8 +5,6 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ServiceCard } from '@/components/ServiceCard';
 import { SectionTitle } from '@/components/SectionTitle';
-import logo from '@/assets/logo.png';
-import infinityWater from '@/assets/infinity-water.png';
 
 const services = [
   {
@@ -31,7 +29,7 @@ const services = [
   },
 ];
 
-const processSteps = ['Discover', 'Design', 'Deploy', 'Continu8'];
+const processSteps = ['Discover', 'Design', 'Deploy', 'Evolve'];
 
 const Index = () => {
   return (
@@ -40,27 +38,88 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* Background effects - 25% opacity */}
-        <div className="absolute inset-0 bg-circuit-pattern opacity-[0.25]" />
-        <div className="absolute inset-0 bg-radial-glow opacity-[0.25]" />
-        
-        {/* Animated lines */}
-        <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-        <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
-        {/* Infinity Water Image - Background behind text */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.4, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        >
-          <img 
-            src={infinityWater} 
-            alt="Infinity Symbol" 
-            className="w-[500px] md:w-[700px] lg:w-[900px] h-auto"
+        {/* Animated floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-primary/30"
+            initial={{
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+              scale: Math.random() * 0.5 + 0.5
+            }}
+            animate={{
+              y: [null, Math.random() * -200 - 100],
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              repeatType: "loop",
+              delay: Math.random() * 5
+            }}
           />
-        </motion.div>
+        ))}
+
+        {/* Animated gradient orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            x: [0, -40, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 30, 0],
+            y: [0, 50, 0]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Animated grid lines */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={`h-${i}`}
+              className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+              style={{ top: `${(i + 1) * 10}%` }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: [0, 0.5, 0] }}
+              transition={{
+                duration: 3,
+                delay: i * 0.2,
+                repeat: Infinity,
+                repeatDelay: 5
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Rotating ring animation */}
+        <motion.div
+          className="absolute w-[600px] h-[600px] border border-primary/10 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute w-[500px] h-[500px] border border-cyan-500/10 rounded-full"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -115,12 +174,12 @@ const Index = () => {
         />
       </section>
 
-      {/* What Continu8 Does */}
+      {/* What Geek247 Does */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-radial-glow opacity-50" />
         <div className="container mx-auto px-6 relative z-10">
           <SectionTitle
-            title="What Continu8 Does"
+            title="What Geek247 Does"
             subtitle="Building AI systems that transform how businesses operate"
           />
 

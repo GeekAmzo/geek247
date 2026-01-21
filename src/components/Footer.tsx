@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+import logo from '/Geek247 Logo.png';
 
 export const Footer = () => {
   return (
@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <Link to="/" className="inline-block mb-6">
-              <img src={logo} alt="Continu8" className="h-12 w-auto" />
+              <img src={logo} alt="Geek247" className="h-12 w-auto" />
             </Link>
             <p className="text-muted-foreground max-w-md mb-6">
               We build and maintain the systems that power your operations, so you can focus on growing your business.
@@ -64,7 +64,7 @@ export const Footer = () => {
 
         <div className="border-t border-primary/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Continu8. All rights reserved.
+            © {new Date().getFullYear()} Geek247. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Trusted by businesses doing R10m-R200m in annual revenue

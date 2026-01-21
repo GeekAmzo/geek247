@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Continu8 Dark Futuristic Design System */
+/* Geek247 Dark Futuristic Design System */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @layer base {
@@ -39,7 +39,7 @@
 
     --radius: 0.75rem;
 
-    /* Custom Continu8 tokens */
+    /* Custom Geek247 tokens */
     --glow-cyan: 185 100% 50%;
     --glow-blue: 200 100% 50%;
     --dark-surface: 220 30% 6%;

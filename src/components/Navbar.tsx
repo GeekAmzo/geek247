@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import logo from '/Geek247 Logo.png';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -21,7 +21,7 @@ export const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Continu8" className="h-14 w-auto" />
+            <img src={logo} alt="Geek247" className="h-14 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
