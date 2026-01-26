@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Target, Zap, Shield, Bot, Server, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { SectionTitle } from '@/components/SectionTitle';
@@ -63,12 +64,12 @@ const About = () => {
             <p className="text-muted-foreground text-lg md:text-xl mb-10">
               We're not a typical development agency. We're systems thinkers who build automation and infrastructure for businesses that want to scale without chaos.
             </p>
-            <a
-              href="mailto:amrish@geek247.co.za"
+            <Link
+              to="/contact"
               className="btn-primary-glow px-8 py-4 rounded-lg font-semibold inline-block"
             >
               Get in Touch
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -214,13 +215,13 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <a
-              href="mailto:amrish@geek247.co.za"
+            <Link
+              to="/contact"
               className="btn-primary-glow px-8 py-4 rounded-lg font-semibold inline-flex items-center gap-2"
             >
               Get in Touch
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

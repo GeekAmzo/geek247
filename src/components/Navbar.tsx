@@ -10,6 +10,7 @@ const navLinks = [
   { name: 'How It Works', path: '/how-it-works' },
   { name: 'Pricing', path: '/pricing' },
   { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 export const Navbar = () => {
@@ -21,7 +22,7 @@ export const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Geek247" className="h-14 w-auto" />
+            <img src={logo} alt="Geek247" className="h-20 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -39,12 +40,12 @@ export const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <a
-              href="mailto:amrish@geek247.co.za"
+            <Link
+              to="/contact"
               className="btn-primary-glow px-5 py-2.5 rounded-lg text-sm font-semibold"
             >
-              Get in Touch
-            </a>
+              Get Started
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,12 +81,13 @@ export const Navbar = () => {
                     {link.name}
                   </Link>
                 ))}
-                <a
-                  href="mailto:amrish@geek247.co.za"
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
                   className="btn-primary-glow px-5 py-2.5 rounded-lg text-sm font-semibold text-center mt-2"
                 >
-                  Get in Touch
-                </a>
+                  Get Started
+                </Link>
               </div>
             </motion.div>
           )}

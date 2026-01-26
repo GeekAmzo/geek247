@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Search, FileText, Wrench, TrendingUp, RefreshCw } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { SectionTitle } from '@/components/SectionTitle';
@@ -95,12 +96,12 @@ const HowItWorks = () => {
             <p className="text-muted-foreground text-lg md:text-xl mb-10">
               A proven 5-step process for transforming your operations from manual and chaotic to automated and scalable.
             </p>
-            <a
-              href="mailto:amrish@geek247.co.za"
+            <Link
+              to="/contact"
               className="btn-primary-glow px-8 py-4 rounded-lg font-semibold inline-block"
             >
               Get in Touch
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -196,13 +197,13 @@ const HowItWorks = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <a
-              href="mailto:amrish@geek247.co.za"
+            <Link
+              to="/contact"
               className="btn-primary-glow px-8 py-4 rounded-lg font-semibold inline-flex items-center gap-2"
             >
               Get in Touch
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

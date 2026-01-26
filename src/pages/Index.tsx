@@ -149,12 +149,12 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <a
-                href="mailto:amrish@geek247.co.za"
+              <Link
+                to="/contact"
                 className="btn-primary-glow px-8 py-4 rounded-lg font-semibold text-base"
               >
                 Start a Project
-              </a>
+              </Link>
               <Link
                 to="/services"
                 className="btn-outline-glow px-8 py-4 rounded-lg font-semibold text-base"

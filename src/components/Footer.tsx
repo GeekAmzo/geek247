@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <Link to="/" className="inline-block mb-6">
-              <img src={logo} alt="Geek247" className="h-12 w-auto" />
+              <img src={logo} alt="Geek247" className="h-16 w-auto" />
             </Link>
             <p className="text-muted-foreground max-w-md mb-6">
               We build and maintain the systems that power your operations, so you can focus on growing your business.
@@ -39,6 +39,11 @@ export const Footer = () => {
               <li>
                 <Link to="/pricing" className="text-muted-foreground hover:text-primary transition-colors">
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
