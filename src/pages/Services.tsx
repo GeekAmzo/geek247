@@ -11,6 +11,7 @@ const services = [
   {
     icon: Bot,
     title: 'AI Process Automation',
+    slug: 'ai-process-automation',
     description: 'Design and implementation of AI-powered workflows to eliminate manual work, reduce errors, and improve speed across your entire operation.',
     features: [
       'Sales process automation',
@@ -23,6 +24,7 @@ const services = [
   {
     icon: Server,
     title: 'Business Systems & Infrastructure',
+    slug: 'business-systems-infrastructure',
     description: 'Architecture, optimization, and oversight of business-critical systems to ensure reliability, security, and scalability as you grow.',
     features: [
       'Cloud & server architecture',
@@ -35,6 +37,7 @@ const services = [
   {
     icon: Code,
     title: 'Custom Software & Integrations',
+    slug: 'custom-software-integrations',
     description: 'Custom-built software and system integrations perfectly aligned to your unique business workflows and requirements.',
     features: [
       'Internal tools & dashboards',
@@ -159,9 +162,11 @@ const Services = () => {
                   <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6 border border-primary/20">
                     <service.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
                   </div>
-                  <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-                    {service.title}
-                  </h2>
+                  <Link to={`/services/${service.slug}`}>
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 hover:text-primary transition-colors">
+                      {service.title}
+                    </h2>
+                  </Link>
                   <p className="text-muted-foreground text-lg mb-8">
                     {service.description}
                   </p>

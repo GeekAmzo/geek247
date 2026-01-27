@@ -8,10 +8,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CurrencyProvider } from "./contexts/CurrencyContext";
+import { UserAuthProvider } from "./contexts/UserAuthContext";
 import { ProtectedRoute } from "./components/admin/ProtectedRoute";
+import { UserProtectedRoute } from "./components/auth/UserProtectedRoute";
 import { AdminLayout } from "./components/admin/AdminLayout";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
 import Pricing from "./pages/Pricing";
 import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
@@ -20,6 +23,26 @@ import AdminLogin from "./pages/admin/Login";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminLeadList from "./pages/admin/LeadList";
 import AdminLeadDetail from "./pages/admin/LeadDetail";
+import AdminServiceList from "./pages/admin/ServiceList";
+import AdminServiceEdit from "./pages/admin/ServiceEdit";
+import AdminSubscriptionList from "./pages/admin/SubscriptionList";
+import AdminSubscriptionDetail from "./pages/admin/SubscriptionDetail";
+import AdminLegalDocList from "./pages/admin/LegalDocList";
+import AdminLegalDocEdit from "./pages/admin/LegalDocEdit";
+import AdminUserAgreements from "./pages/admin/UserAgreements";
+import UserLogin from "./pages/auth/UserLogin";
+import UserSignup from "./pages/auth/UserSignup";
+import Onboarding from "./pages/auth/Onboarding";
+import PortalLayout from "./pages/portal/PortalLayout";
+import PortalDashboard from "./pages/portal/PortalDashboard";
+import PortalServices from "./pages/portal/PortalServices";
+import PortalBookMeeting from "./pages/portal/PortalBookMeeting";
+import PortalProfile from "./pages/portal/PortalProfile";
+import PortalSubscriptions from "./pages/portal/PortalSubscriptions";
+import PortalSubscriptionDetail from "./pages/portal/PortalSubscriptionDetail";
+import PortalPayments from "./pages/portal/PortalPayments";
+import TermsOfService from "./pages/legal/TermsOfService";
+import ServiceLevelAgreement from "./pages/legal/ServiceLevelAgreement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,16 +56,52 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <CurrencyProvider>
+        <UserAuthProvider>
         <AuthProvider>
           <ScrollToTop />
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+
+            {/* Legal pages */}
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/sla" element={<ServiceLevelAgreement />} />
+
+            {/* Customer auth routes */}
+            <Route path="/login" element={<UserLogin />} />
+            <Route path="/signup" element={<UserSignup />} />
+            <Route
+              path="/onboarding"
+              element={
+                <UserProtectedRoute>
+                  <Onboarding />
+                </UserProtectedRoute>
+              }
+            />
+
+            {/* Customer portal routes */}
+            <Route
+              path="/portal"
+              element={
+                <UserProtectedRoute>
+                  <PortalLayout />
+                </UserProtectedRoute>
+              }
+            >
+              <Route index element={<PortalDashboard />} />
+              <Route path="services" element={<PortalServices />} />
+              <Route path="book-meeting" element={<PortalBookMeeting />} />
+              <Route path="profile" element={<PortalProfile />} />
+              <Route path="subscriptions" element={<PortalSubscriptions />} />
+              <Route path="subscriptions/:id" element={<PortalSubscriptionDetail />} />
+              <Route path="payments" element={<PortalPayments />} />
+            </Route>
 
             {/* Admin routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
@@ -57,12 +116,22 @@ const App = () => (
               <Route index element={<AdminDashboard />} />
               <Route path="leads" element={<AdminLeadList />} />
               <Route path="leads/:id" element={<AdminLeadDetail />} />
+              <Route path="services" element={<AdminServiceList />} />
+              <Route path="services/new" element={<AdminServiceEdit />} />
+              <Route path="services/:id" element={<AdminServiceEdit />} />
+              <Route path="subscriptions" element={<AdminSubscriptionList />} />
+              <Route path="subscriptions/:id" element={<AdminSubscriptionDetail />} />
+              <Route path="legal" element={<AdminLegalDocList />} />
+              <Route path="legal/new" element={<AdminLegalDocEdit />} />
+              <Route path="legal/:id" element={<AdminLegalDocEdit />} />
+              <Route path="agreements" element={<AdminUserAgreements />} />
             </Route>
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
+        </UserAuthProvider>
         </CurrencyProvider>
       </BrowserRouter>
     </TooltipProvider>

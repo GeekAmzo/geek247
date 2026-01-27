@@ -6,6 +6,13 @@ export const StorageKeys = {
   LEADS: `${STORAGE_PREFIX}leads`,
   ACTIVITIES: `${STORAGE_PREFIX}activities`,
   AUTH: `${STORAGE_PREFIX}auth`,
+  SERVICES: `${STORAGE_PREFIX}services`,
+  SUBSCRIPTIONS: `${STORAGE_PREFIX}subscriptions`,
+  PAYMENT_HISTORY: `${STORAGE_PREFIX}payment_history`,
+  LEGAL_DOCUMENTS: `${STORAGE_PREFIX}legal_documents`,
+  USER_AGREEMENTS: `${STORAGE_PREFIX}user_agreements`,
+  USER_PROFILE: `${STORAGE_PREFIX}user_profile`,
+  USER_AUTH: `${STORAGE_PREFIX}user_auth`,
 } as const;
 
 export type StorageKey = (typeof StorageKeys)[keyof typeof StorageKeys];

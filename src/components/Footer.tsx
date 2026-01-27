@@ -71,9 +71,14 @@ export const Footer = () => {
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Geek247 - H44S (Pty) Ltd. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm">
-            Helping businesses achieve greater efficiency through technology
-          </p>
+          <div className="flex items-center gap-4">
+            <Link to="/terms" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+            <Link to="/sla" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+              SLA
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
+import { useUserAuth } from '@/contexts/UserAuthContext';
 import logo from '/Geek247 Logo.png';
 
 const navLinks = [
@@ -16,6 +17,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { isAuthenticated } = useUserAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-primary/10">
@@ -40,6 +42,22 @@ export const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            {isAuthenticated ? (
+              <Link
+                to="/portal"
+                className="btn-outline-glow px-4 py-2 rounded-lg text-sm font-semibold inline-flex items-center gap-2"
+              >
+                <User className="w-4 h-4" />
+                Portal
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="btn-outline-glow px-4 py-2 rounded-lg text-sm font-semibold"
+              >
+                Login
+              </Link>
+            )}
             <Link
               to="/contact"
               className="btn-primary-glow px-5 py-2.5 rounded-lg text-sm font-semibold"
@@ -81,6 +99,24 @@ export const Navbar = () => {
                     {link.name}
                   </Link>
                 ))}
+                {isAuthenticated ? (
+                  <Link
+                    to="/portal"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-outline-glow px-5 py-2.5 rounded-lg text-sm font-semibold text-center mt-2 inline-flex items-center justify-center gap-2"
+                  >
+                    <User className="w-4 h-4" />
+                    Portal
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-outline-glow px-5 py-2.5 rounded-lg text-sm font-semibold text-center mt-2"
+                  >
+                    Login
+                  </Link>
+                )}
                 <Link
                   to="/contact"
                   onClick={() => setIsOpen(false)}
