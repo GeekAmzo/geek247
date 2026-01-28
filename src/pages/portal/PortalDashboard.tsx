@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
-import { CreditCard, ArrowRight, CalendarDays, LayoutGrid, Plus } from 'lucide-react';
+import { CreditCard, ArrowRight, CalendarDays, LayoutGrid, Plus, FolderKanban } from 'lucide-react';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { useSubscriptions } from '@/hooks/useSubscriptions';
 import { useServices } from '@/hooks/useServices';
+import { useClients } from '@/hooks/useClients';
+import { useProjects } from '@/hooks/useProjects';
 import { SubscriptionCard } from '@/components/portal/SubscriptionCard';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -10,6 +12,11 @@ export default function PortalDashboard() {
   const { user, profile } = useUserAuth();
   const { data: subscriptions, isLoading } = useSubscriptions(user?.id);
   const { data: services } = useServices();
+
+  const { data: clients } = useClients();
+  const userClient = clients?.find((c) => c.userProfileId === user?.id);
+  const { data: projects } = useProjects(userClient ? { clientId: userClient.id } : undefined);
+  const activeProjectCount = projects?.filter((p) => p.status === 'active').length || 0;
 
   const activeSubscriptions = subscriptions?.filter((s) => s.status === 'active') || [];
   const subscribedServiceIds = new Set(activeSubscriptions.map((s) => s.serviceId));
@@ -25,7 +32,7 @@ export default function PortalDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="p-6 rounded-lg border border-border bg-card">
           <div className="flex items-center gap-3 mb-2">
             <CreditCard className="w-5 h-5 text-primary" />
@@ -35,6 +42,23 @@ export default function PortalDashboard() {
             {isLoading ? <Skeleton className="h-9 w-12" /> : activeSubscriptions.length}
           </p>
         </div>
+
+        <Link
+          to="/portal/projects"
+          className="p-6 rounded-lg border border-border bg-card hover:border-primary/50 hover:bg-primary/5 transition-all group"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <FolderKanban className="w-5 h-5 text-primary" />
+            <span className="text-sm text-muted-foreground">Active Projects</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="text-3xl font-bold text-foreground">{activeProjectCount}</p>
+            <span className="text-xs text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+              View
+              <ArrowRight className="w-3 h-3" />
+            </span>
+          </div>
+        </Link>
 
         <Link
           to="/portal/services"

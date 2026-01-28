@@ -28,6 +28,7 @@ import {
 import { LeadStatusSelect } from '@/components/admin/LeadStatusSelect';
 import { ActivityTimeline } from '@/components/admin/ActivityTimeline';
 import { ActivityForm } from '@/components/admin/ActivityForm';
+import { ConvertLeadToClient } from '@/components/admin/ConvertLeadToClient';
 import { useLead, useUpdateLeadStatus, useDeleteLead } from '@/hooks/useLeads';
 import { useActivities } from '@/hooks/useActivities';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -96,6 +97,9 @@ const LeadDetail = () => {
           <p className="text-muted-foreground mt-1">{lead.email}</p>
         </div>
         <div className="flex items-center gap-3">
+          {lead.status === 'won' && (
+            <ConvertLeadToClient lead={lead} />
+          )}
           <LeadStatusSelect
             value={lead.status}
             onValueChange={handleStatusChange}

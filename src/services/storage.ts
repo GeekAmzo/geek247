@@ -13,6 +13,16 @@ export const StorageKeys = {
   USER_AGREEMENTS: `${STORAGE_PREFIX}user_agreements`,
   USER_PROFILE: `${STORAGE_PREFIX}user_profile`,
   USER_AUTH: `${STORAGE_PREFIX}user_auth`,
+  CLIENTS: `${STORAGE_PREFIX}clients`,
+  PROJECTS: `${STORAGE_PREFIX}projects`,
+  PROJECT_MEMBERS: `${STORAGE_PREFIX}project_members`,
+  PROJECT_TASKS: `${STORAGE_PREFIX}project_tasks`,
+  TASK_COMMENTS: `${STORAGE_PREFIX}task_comments`,
+  PROJECT_MILESTONES: `${STORAGE_PREFIX}project_milestones`,
+  PROJECT_GOALS: `${STORAGE_PREFIX}project_goals`,
+  PROJECT_DELIVERABLES: `${STORAGE_PREFIX}project_deliverables`,
+  PROJECT_ATTACHMENTS: `${STORAGE_PREFIX}project_attachments`,
+  CLIENT_COMMUNICATIONS: `${STORAGE_PREFIX}client_communications`,
 } as const;
 
 export type StorageKey = (typeof StorageKeys)[keyof typeof StorageKeys];

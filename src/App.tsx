@@ -30,6 +30,13 @@ import AdminSubscriptionDetail from "./pages/admin/SubscriptionDetail";
 import AdminLegalDocList from "./pages/admin/LegalDocList";
 import AdminLegalDocEdit from "./pages/admin/LegalDocEdit";
 import AdminUserAgreements from "./pages/admin/UserAgreements";
+import AdminClientList from "./pages/admin/ClientList";
+import AdminClientDetail from "./pages/admin/ClientDetail";
+import AdminClientEdit from "./pages/admin/ClientEdit";
+import AdminClientOverview from "./pages/admin/ClientOverview";
+import AdminProjectList from "./pages/admin/ProjectList";
+import AdminProjectDetail from "./pages/admin/ProjectDetail";
+import AdminProjectEdit from "./pages/admin/ProjectEdit";
 import UserLogin from "./pages/auth/UserLogin";
 import UserSignup from "./pages/auth/UserSignup";
 import Onboarding from "./pages/auth/Onboarding";
@@ -41,6 +48,8 @@ import PortalProfile from "./pages/portal/PortalProfile";
 import PortalSubscriptions from "./pages/portal/PortalSubscriptions";
 import PortalSubscriptionDetail from "./pages/portal/PortalSubscriptionDetail";
 import PortalPayments from "./pages/portal/PortalPayments";
+import PortalProjects from "./pages/portal/PortalProjects";
+import PortalProjectDetail from "./pages/portal/PortalProjectDetail";
 import TermsOfService from "./pages/legal/TermsOfService";
 import ServiceLevelAgreement from "./pages/legal/ServiceLevelAgreement";
 import NotFound from "./pages/NotFound";
@@ -101,6 +110,8 @@ const App = () => (
               <Route path="subscriptions" element={<PortalSubscriptions />} />
               <Route path="subscriptions/:id" element={<PortalSubscriptionDetail />} />
               <Route path="payments" element={<PortalPayments />} />
+              <Route path="projects" element={<PortalProjects />} />
+              <Route path="projects/:id" element={<PortalProjectDetail />} />
             </Route>
 
             {/* Admin routes */}
@@ -125,6 +136,15 @@ const App = () => (
               <Route path="legal/new" element={<AdminLegalDocEdit />} />
               <Route path="legal/:id" element={<AdminLegalDocEdit />} />
               <Route path="agreements" element={<AdminUserAgreements />} />
+              <Route path="clients" element={<AdminClientList />} />
+              <Route path="clients/new" element={<AdminClientEdit />} />
+              <Route path="clients/:id" element={<AdminClientDetail />} />
+              <Route path="clients/:id/edit" element={<AdminClientEdit />} />
+              <Route path="clients/:id/overview" element={<AdminClientOverview />} />
+              <Route path="projects" element={<AdminProjectList />} />
+              <Route path="projects/new" element={<AdminProjectEdit />} />
+              <Route path="projects/:id" element={<AdminProjectDetail />} />
+              <Route path="projects/:id/edit" element={<AdminProjectEdit />} />
             </Route>
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

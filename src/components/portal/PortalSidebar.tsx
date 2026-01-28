@@ -8,6 +8,7 @@ import {
   User,
   LogOut,
   ExternalLink,
+  FolderKanban,
 } from 'lucide-react';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { cn } from '@/lib/utils';
@@ -15,6 +16,7 @@ import logo from '/Geek247 Logo.png';
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/portal' },
+  { icon: FolderKanban, label: 'Projects', path: '/portal/projects' },
   { icon: LayoutGrid, label: 'Services', path: '/portal/services' },
   { icon: CalendarDays, label: 'Book Meeting', path: '/portal/book-meeting' },
   { icon: CreditCard, label: 'Subscriptions', path: '/portal/subscriptions' },

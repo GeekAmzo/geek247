@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Brain, Bot, Layers, Lightbulb, ArrowRight } from 'lucide-react';
+import { Brain, Bot, Layers, Lightbulb, ArrowRight, Cog } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -18,6 +18,11 @@ const services = [
     description: 'Intelligent agents that work 24/7 across your tools, data, and workflows.',
   },
   {
+    icon: Cog,
+    title: 'Legacy System Automation',
+    description: 'Modernize hydraulics, motors, and industrial equipment with smart controls.',
+  },
+  {
     icon: Layers,
     title: 'Product & Platform Engineering',
     description: 'From MVP to enterprise-scale AI infrastructure.',
@@ -29,6 +34,14 @@ const services = [
   },
 ];
 
+// Electric bolt paths for hero animation
+const electricBolts = [
+  { path: 'M0,50 L20,45 L15,55 L40,50 L35,60 L60,55', delay: 0 },
+  { path: 'M100,30 L80,35 L85,25 L60,30 L65,20 L40,25', delay: 0.5 },
+  { path: 'M0,70 L25,65 L20,75 L50,70', delay: 1 },
+  { path: 'M100,80 L75,75 L80,85 L55,80', delay: 1.5 },
+];
+
 const processSteps = ['Discover', 'Design', 'Deploy', 'Evolve'];
 
 const Index = () => {
@@ -38,41 +51,134 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* Animated floating particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Background Logo with Electric Glow */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-primary/30"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="relative w-[500px] h-[500px] md:w-[700px] md:h-[700px]"
+          >
+            {/* Main logo image */}
+            <motion.img
+              src="/Geek247 Logo.png"
+              alt=""
+              className="w-full h-full object-contain opacity-[0.08]"
+              animate={{
+                filter: [
+                  'drop-shadow(0 0 20px rgba(0, 200, 255, 0.3))',
+                  'drop-shadow(0 0 40px rgba(0, 200, 255, 0.5))',
+                  'drop-shadow(0 0 20px rgba(0, 200, 255, 0.3))',
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {/* Electric pulse rings */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`ring-${i}`}
+                className="absolute inset-0 border-2 border-cyan-400/20 rounded-full"
+                style={{ margin: `${i * 40}px` }}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{
+                  scale: [0.8, 1.1, 0.8],
+                  opacity: [0, 0.6, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Electric spark particles */}
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={`spark-${i}`}
+            className="absolute w-1 h-1 rounded-full"
+            style={{
+              background: i % 3 === 0 ? '#00d4ff' : i % 3 === 1 ? '#a855f7' : '#22d3ee',
+              boxShadow: `0 0 ${4 + (i % 3) * 2}px currentColor`,
+            }}
             initial={{
               x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
               y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               scale: Math.random() * 0.5 + 0.5
             }}
             animate={{
-              y: [null, Math.random() * -200 - 100],
-              opacity: [0, 1, 0]
+              y: [null, Math.random() * -300 - 100],
+              x: [null, (Math.random() - 0.5) * 100],
+              opacity: [0, 1, 1, 0],
+              scale: [0.5, 1, 0.5]
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: Math.random() * 4 + 3,
               repeat: Infinity,
               repeatType: "loop",
-              delay: Math.random() * 5
+              delay: Math.random() * 3
             }}
           />
         ))}
 
+        {/* Electric bolt SVG animations */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <filter id="electricGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="0.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          {electricBolts.map((bolt, i) => (
+            <motion.path
+              key={`bolt-${i}`}
+              d={bolt.path}
+              fill="none"
+              stroke="url(#electricGradient)"
+              strokeWidth="0.3"
+              filter="url(#electricGlow)"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{
+                pathLength: [0, 1, 1, 0],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+                repeatDelay: 2 + Math.random() * 2,
+                delay: bolt.delay,
+                ease: "easeOut"
+              }}
+            />
+          ))}
+          <defs>
+            <linearGradient id="electricGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#00d4ff" />
+              <stop offset="50%" stopColor="#a855f7" />
+              <stop offset="100%" stopColor="#22d3ee" />
+            </linearGradient>
+          </defs>
+        </svg>
+
         {/* Animated gradient orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-cyan-500/10 blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
+            scale: [1, 1.3, 1],
             x: [0, 50, 0],
             y: [0, -30, 0]
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-primary/10 blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             x: [0, -40, 0],
@@ -81,45 +187,89 @@ const Index = () => {
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl"
+          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-purple-500/15 blur-3xl"
           animate={{
-            scale: [1, 1.3, 1],
+            scale: [1, 1.4, 1],
             x: [0, 30, 0],
             y: [0, 50, 0]
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Animated grid lines */}
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          {[...Array(10)].map((_, i) => (
+        {/* Circuit trace lines */}
+        <div className="absolute inset-0 overflow-hidden opacity-30">
+          {[...Array(8)].map((_, i) => (
             <motion.div
-              key={`h-${i}`}
-              className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
-              style={{ top: `${(i + 1) * 10}%` }}
+              key={`trace-${i}`}
+              className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+              style={{
+                top: `${10 + i * 12}%`,
+                left: i % 2 === 0 ? '0' : '20%',
+                right: i % 2 === 0 ? '20%' : '0',
+              }}
               initial={{ scaleX: 0, opacity: 0 }}
-              animate={{ scaleX: 1, opacity: [0, 0.5, 0] }}
+              animate={{
+                scaleX: [0, 1, 1, 0],
+                opacity: [0, 0.8, 0.8, 0],
+              }}
               transition={{
-                duration: 3,
-                delay: i * 0.2,
+                duration: 2,
+                delay: i * 0.3,
                 repeat: Infinity,
-                repeatDelay: 5
+                repeatDelay: 4,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+          {/* Vertical traces */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`vtrace-${i}`}
+              className="absolute w-px bg-gradient-to-b from-transparent via-purple-400 to-transparent"
+              style={{
+                left: `${15 + i * 15}%`,
+                top: i % 2 === 0 ? '0' : '30%',
+                bottom: i % 2 === 0 ? '30%' : '0',
+              }}
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{
+                scaleY: [0, 1, 1, 0],
+                opacity: [0, 0.6, 0.6, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                delay: 1 + i * 0.4,
+                repeat: Infinity,
+                repeatDelay: 5,
+                ease: "easeInOut"
               }}
             />
           ))}
         </div>
 
-        {/* Rotating ring animation */}
+        {/* Rotating hexagon frames */}
         <motion.div
-          className="absolute w-[600px] h-[600px] border border-primary/10 rounded-full"
+          className="absolute w-[550px] h-[550px] md:w-[650px] md:h-[650px]"
+          style={{
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+            border: '1px solid rgba(0, 212, 255, 0.1)',
+          }}
           animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="w-full h-full border border-cyan-500/10" style={{
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          }} />
+        </motion.div>
         <motion.div
-          className="absolute w-[500px] h-[500px] border border-cyan-500/10 rounded-full"
+          className="absolute w-[480px] h-[480px] md:w-[580px] md:h-[580px]"
           animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="w-full h-full border border-purple-500/10" style={{
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          }} />
+        </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -131,7 +281,19 @@ const Index = () => {
               className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
             >
               AI That Never<br />
-              <span className="gradient-text">Stops Learning.</span>
+              <motion.span
+                className="gradient-text"
+                animate={{
+                  textShadow: [
+                    '0 0 20px rgba(0, 212, 255, 0.3)',
+                    '0 0 40px rgba(0, 212, 255, 0.5)',
+                    '0 0 20px rgba(0, 212, 255, 0.3)',
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                Stops Learning.
+              </motion.span>
             </motion.h1>
 
             <motion.p
@@ -140,7 +302,7 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-muted-foreground text-lg md:text-xl mb-10"
             >
-              Custom AI systems • Automation • Intelligent Agents • Scalable Architectures
+              Custom AI systems • Automation • Intelligent Agents • Legacy System Modernization
             </motion.p>
 
             <motion.div
@@ -165,12 +327,16 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Bottom glow line */}
+        {/* Bottom electric glow line */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.5, delay: 1 }}
-          className="absolute bottom-20 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+          className="absolute bottom-20 left-0 right-0 h-px"
+          style={{
+            background: 'linear-gradient(90deg, transparent, #00d4ff, #a855f7, #00d4ff, transparent)',
+            boxShadow: '0 0 20px rgba(0, 212, 255, 0.5)',
+          }}
         />
       </section>
 
@@ -183,7 +349,7 @@ const Index = () => {
             subtitle="Building AI systems that transform how businesses operate"
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-12">
             {services.map((service, index) => (
               <ServiceCard key={service.title} {...service} index={index} />
             ))}

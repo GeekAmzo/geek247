@@ -8,6 +8,8 @@ import {
   CreditCard,
   FileText,
   Handshake,
+  UserCheck,
+  FolderKanban,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
@@ -16,6 +18,8 @@ import logo from '/Geek247 Logo.png';
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
   { icon: Users, label: 'Leads', path: '/admin/leads' },
+  { icon: UserCheck, label: 'Clients', path: '/admin/clients' },
+  { icon: FolderKanban, label: 'Projects', path: '/admin/projects' },
   { icon: Package, label: 'Services', path: '/admin/services' },
   { icon: CreditCard, label: 'Subscriptions', path: '/admin/subscriptions' },
   { icon: FileText, label: 'Legal Docs', path: '/admin/legal' },

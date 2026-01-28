@@ -8,16 +8,28 @@ import {
   ArrowRight,
   Mail,
   Phone,
+  UserCheck,
+  FolderKanban,
+  CheckSquare,
 } from 'lucide-react';
 import { StatsCard } from '@/components/admin/StatsCard';
 import { LeadStatusBadge } from '@/components/admin/LeadStatusBadge';
+import { ProjectStatusBadge } from '@/components/admin/ProjectStatusBadge';
 import { useLeadStats, useRecentLeads } from '@/hooks/useLeads';
+import { useClients } from '@/hooks/useClients';
+import { useProjects } from '@/hooks/useProjects';
 import { Skeleton } from '@/components/ui/skeleton';
 import { LEAD_STATUSES } from '@/types/crm';
 
 const Dashboard = () => {
   const { data: stats, isLoading: statsLoading } = useLeadStats();
   const { data: recentLeads, isLoading: leadsLoading } = useRecentLeads(5);
+  const { data: clients } = useClients();
+  const { data: projects } = useProjects();
+
+  const activeClients = clients?.filter((c) => c.status === 'active').length || 0;
+  const activeProjects = projects?.filter((p) => p.status === 'active').length || 0;
+  const recentProjects = projects?.slice(0, 5) || [];
 
   return (
     <div className="space-y-8">
@@ -30,10 +42,10 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
         {statsLoading ? (
           <>
-            {[...Array(4)].map((_, i) => (
+            {[...Array(6)].map((_, i) => (
               <Skeleton key={i} className="h-32 rounded-xl" />
             ))}
           </>
@@ -58,6 +70,16 @@ const Dashboard = () => {
               title="New Leads"
               value={stats?.byStatus.new || 0}
               icon={UserPlus}
+            />
+            <StatsCard
+              title="Active Clients"
+              value={activeClients}
+              icon={UserCheck}
+            />
+            <StatsCard
+              title="Active Projects"
+              value={activeProjects}
+              icon={FolderKanban}
             />
           </>
         )}
@@ -150,6 +172,53 @@ const Dashboard = () => {
             <p className="text-sm text-muted-foreground mt-1">
               Leads submitted through the contact form will appear here.
             </p>
+          </div>
+        )}
+      </motion.div>
+
+      {/* Recent Projects */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-6 rounded-xl bg-card border border-border"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-foreground">Recent Projects</h2>
+          <Link
+            to="/admin/projects"
+            className="text-sm text-primary hover:underline inline-flex items-center gap-1"
+          >
+            View all
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {recentProjects.length > 0 ? (
+          <div className="divide-y divide-border">
+            {recentProjects.map((project) => (
+              <Link
+                key={project.id}
+                to={`/admin/projects/${project.id}`}
+                className="flex items-center justify-between py-4 hover:bg-muted/50 -mx-2 px-2 rounded-lg transition-colors"
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-foreground truncate">{project.name}</p>
+                  {project.clientName && (
+                    <p className="text-sm text-muted-foreground mt-1">{project.clientName}</p>
+                  )}
+                </div>
+                <div className="flex items-center gap-4 ml-4">
+                  <ProjectStatusBadge status={project.status} />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <FolderKanban className="w-12 h-12 mx-auto text-muted-foreground/50 mb-3" />
+            <p className="text-muted-foreground">No projects yet</p>
           </div>
         )}
       </motion.div>

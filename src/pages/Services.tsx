@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Cpu, Server, Code, Bot, Shield, Database, Zap, LineChart, FileText, Users, ArrowRight, Rocket, Check } from 'lucide-react';
+import { Cpu, Server, Code, Bot, Shield, Database, Zap, LineChart, FileText, Users, ArrowRight, Rocket, Check, Cog, Gauge, Car } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -46,6 +46,47 @@ const services = [
       'Automation backends',
       'Custom business applications',
     ],
+  },
+  {
+    icon: Cog,
+    title: 'Legacy System Automation',
+    slug: 'legacy-system-automation',
+    description: 'Modernize and automate legacy industrial equipment, machinery, and vehicles. We bring smart monitoring and control to systems that were never designed for the digital age.',
+    features: [
+      'Hydraulic system automation & monitoring',
+      'Electric motor control systems',
+      'Vehicle & fleet telemetry',
+      'Industrial equipment retrofitting',
+      'Predictive maintenance sensors',
+    ],
+    customPricing: true,
+  },
+];
+
+const legacyAutomationSolutions = [
+  {
+    icon: Gauge,
+    name: 'Hydraulic Systems',
+    description: 'Retrofit hydraulic presses, lifts, and machinery with smart sensors and automated control.',
+    capabilities: ['Pressure monitoring', 'Flow control', 'Leak detection', 'Predictive maintenance'],
+  },
+  {
+    icon: Zap,
+    name: 'Electric Motors',
+    description: 'Add intelligent control and monitoring to industrial motors and drives.',
+    capabilities: ['Variable speed control', 'Energy monitoring', 'Thermal protection', 'Remote operation'],
+  },
+  {
+    icon: Car,
+    name: 'Vehicle Monitoring',
+    description: 'Real-time telemetry and diagnostics for cars, trucks, and fleet vehicles.',
+    capabilities: ['GPS tracking', 'Engine diagnostics', 'Fuel monitoring', 'Driver behavior'],
+  },
+  {
+    icon: Cog,
+    name: 'Industrial Equipment',
+    description: 'Bring legacy factory equipment into the modern age with IoT integration.',
+    capabilities: ['Production monitoring', 'Quality control', 'Automated alerts', 'Data logging'],
   },
 ];
 
@@ -345,6 +386,111 @@ const Services = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Legacy System Automation Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-circuit-pattern opacity-20" />
+        {/* Electric effect decorations */}
+        <motion.div
+          className="absolute top-1/4 left-0 w-64 h-px bg-gradient-to-r from-cyan-500 to-transparent"
+          animate={{ opacity: [0.3, 0.7, 0.3], scaleX: [0.5, 1, 0.5] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 right-0 w-64 h-px bg-gradient-to-l from-purple-500 to-transparent"
+          animate={{ opacity: [0.3, 0.7, 0.3], scaleX: [0.5, 1, 0.5] }}
+          transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+        />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-6 border border-cyan-500/30">
+              <Cog className="w-10 h-10 text-cyan-400" strokeWidth={1.5} />
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Legacy System <span className="gradient-text">Automation</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              We specialize in bringing modern automation and monitoring to equipment that predates the digital age.
+              Hydraulics, motors, vehicles — if it moves or operates, we can make it smart.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {legacyAutomationSolutions.map((solution, index) => (
+              <motion.div
+                key={solution.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="service-card rounded-xl p-6 glow-border-hover group"
+              >
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 flex items-center justify-center mb-4 border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors">
+                  <solution.icon className="w-7 h-7 text-cyan-400" />
+                </div>
+                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+                  {solution.name}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  {solution.description}
+                </p>
+                <ul className="space-y-2">
+                  {solution.capabilities.map((cap) => (
+                    <li key={cap} className="flex items-center gap-2 text-sm text-foreground">
+                      <div className="w-1 h-1 rounded-full bg-cyan-400" />
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="service-card rounded-2xl p-8 glow-border max-w-3xl mx-auto text-center"
+          >
+            <h3 className="font-display text-2xl font-semibold text-foreground mb-4">
+              Custom Pricing Based on Specification
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Every legacy system is unique. We assess your equipment, design a tailored automation solution,
+              and provide transparent pricing based on complexity, hardware requirements, and integration scope.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <div className="px-4 py-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                <p className="text-sm text-muted-foreground">Site Assessment</p>
+                <p className="text-lg font-semibold text-foreground">Included</p>
+              </div>
+              <div className="px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <p className="text-sm text-muted-foreground">Custom Hardware</p>
+                <p className="text-lg font-semibold text-foreground">As Required</p>
+              </div>
+              <div className="px-4 py-2 rounded-lg bg-primary/10 border border-primary/20">
+                <p className="text-sm text-muted-foreground">Ongoing Support</p>
+                <p className="text-lg font-semibold text-foreground">Available</p>
+              </div>
+            </div>
+            <Link
+              to="/contact"
+              className="btn-primary-glow px-8 py-4 rounded-lg font-semibold inline-flex items-center gap-2"
+            >
+              Request Assessment
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
