@@ -88,7 +88,7 @@ const TicketDetail = () => {
         ticketId: id,
         data: {
           ticketId: id,
-          authorId: user?.email || 'admin',
+          authorId: user?.id || 'admin',
           content: replyContent.trim(),
           isInternal,
         },
