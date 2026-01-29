@@ -9,6 +9,7 @@ import {
   LogOut,
   ExternalLink,
   FolderKanban,
+  Ticket,
 } from 'lucide-react';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { cn } from '@/lib/utils';
@@ -21,6 +22,7 @@ const navItems = [
   { icon: CalendarDays, label: 'Book Meeting', path: '/portal/book-meeting' },
   { icon: CreditCard, label: 'Subscriptions', path: '/portal/subscriptions' },
   { icon: Receipt, label: 'Payments', path: '/portal/payments' },
+  { icon: Ticket, label: 'Support', path: '/portal/tickets' },
   { icon: User, label: 'Profile', path: '/portal/profile' },
 ];
 

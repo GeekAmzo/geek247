@@ -37,6 +37,8 @@ import AdminClientOverview from "./pages/admin/ClientOverview";
 import AdminProjectList from "./pages/admin/ProjectList";
 import AdminProjectDetail from "./pages/admin/ProjectDetail";
 import AdminProjectEdit from "./pages/admin/ProjectEdit";
+import AdminTicketList from "./pages/admin/TicketList";
+import AdminTicketDetail from "./pages/admin/TicketDetail";
 import UserLogin from "./pages/auth/UserLogin";
 import UserSignup from "./pages/auth/UserSignup";
 import Onboarding from "./pages/auth/Onboarding";
@@ -50,6 +52,9 @@ import PortalSubscriptionDetail from "./pages/portal/PortalSubscriptionDetail";
 import PortalPayments from "./pages/portal/PortalPayments";
 import PortalProjects from "./pages/portal/PortalProjects";
 import PortalProjectDetail from "./pages/portal/PortalProjectDetail";
+import PortalTickets from "./pages/portal/PortalTickets";
+import PortalNewTicket from "./pages/portal/PortalNewTicket";
+import PortalTicketDetail from "./pages/portal/PortalTicketDetail";
 import TermsOfService from "./pages/legal/TermsOfService";
 import ServiceLevelAgreement from "./pages/legal/ServiceLevelAgreement";
 import NotFound from "./pages/NotFound";
@@ -112,6 +117,9 @@ const App = () => (
               <Route path="payments" element={<PortalPayments />} />
               <Route path="projects" element={<PortalProjects />} />
               <Route path="projects/:id" element={<PortalProjectDetail />} />
+              <Route path="tickets" element={<PortalTickets />} />
+              <Route path="tickets/new" element={<PortalNewTicket />} />
+              <Route path="tickets/:id" element={<PortalTicketDetail />} />
             </Route>
 
             {/* Admin routes */}
@@ -145,6 +153,8 @@ const App = () => (
               <Route path="projects/new" element={<AdminProjectEdit />} />
               <Route path="projects/:id" element={<AdminProjectDetail />} />
               <Route path="projects/:id/edit" element={<AdminProjectEdit />} />
+              <Route path="tickets" element={<AdminTicketList />} />
+              <Route path="tickets/:id" element={<AdminTicketDetail />} />
             </Route>
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

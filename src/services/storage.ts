@@ -23,6 +23,8 @@ export const StorageKeys = {
   PROJECT_DELIVERABLES: `${STORAGE_PREFIX}project_deliverables`,
   PROJECT_ATTACHMENTS: `${STORAGE_PREFIX}project_attachments`,
   CLIENT_COMMUNICATIONS: `${STORAGE_PREFIX}client_communications`,
+  TICKETS: `${STORAGE_PREFIX}tickets`,
+  TICKET_MESSAGES: `${STORAGE_PREFIX}ticket_messages`,
 } as const;
 
 export type StorageKey = (typeof StorageKeys)[keyof typeof StorageKeys];

@@ -10,6 +10,7 @@ import {
   Handshake,
   UserCheck,
   FolderKanban,
+  Ticket,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
@@ -24,6 +25,7 @@ const navItems = [
   { icon: CreditCard, label: 'Subscriptions', path: '/admin/subscriptions' },
   { icon: FileText, label: 'Legal Docs', path: '/admin/legal' },
   { icon: Handshake, label: 'Agreements', path: '/admin/agreements' },
+  { icon: Ticket, label: 'Tickets', path: '/admin/tickets' },
 ];
 
 export function AdminSidebar() {
